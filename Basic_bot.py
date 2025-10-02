@@ -8,6 +8,7 @@ from binance.client import Client
 import logging
 from binance.exceptions import BinanceAPIException, BinanceOrderException
 from binance.enums import *
+from dotenv import load_dotenv
 
 logging.basicConfig(
     level=logging.INFO,
@@ -87,7 +88,7 @@ class Basic_bot():
     def get_symbol_info(self, symbol):
         try : 
             info = self.client.futures_exchange_info()
-            for s in info['symbol']:
+            for s in info['symbols']:
                 if s == symbol.upper():
                     return s
             logging.warning(f"{symbol} is not a valid FUTURE symbol")
